@@ -1,0 +1,947 @@
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: var(--background-primary);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    position: static;
+    background-color: var(--accent);
+    color: white;
+    min-height: 56px;
+    min-height: 56px;
+    z-index: 2;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+#page {
+    height: 100%;
+}
+
+.page-container {
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: 0;
+    max-width: 100%;
+    height: max-content;
+    padding: 0;
+}
+
+.border-color {
+    border-color: var(--background-secondary);
+}
+
+.background-color {
+    background-color: var(--background-primary);
+}
+
+.now-page {
+    padding: 0px 15px;
+}
+
+.import-page {
+    padding: 0px 30px;
+}
+
+.now-page .card {
+    margin-bottom: 15px;
+    border-radius: .5rem;
+}
+
+.now-page .card:last-of-type {
+    margin-bottom: 0;
+}
+
+.class-name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.class-location, .class-time {
+    font-size: 1.5rem;
+}
+
+.view-selector {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin: 0px 0px 20px;
+}
+
+.view-selector .view-text {
+    font-size: 1.5rem;
+    color: var(--foreground-primary);
+    width: min-content;
+}
+
+.view-selector .view-label {
+    font-weight: bold;
+}
+
+.view-selector .view-text.active {
+    border-bottom: 2px solid var(--accent);
+}
+
+.view-selector .view-text:hover {
+    text-decoration: none;
+}
+
+.day-selector-container {
+    display: flex;
+    justify-content: center;
+}
+
+.day-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: 5px 25px;
+    margin-bottom: 20px;
+    background-color: var(--background-secondary);
+    border-radius: 100px;
+}
+
+.day-selector .day-text {
+    font-size: 1.5rem;
+    color: var(--foreground-primary);
+    width: min-content;
+    cursor: pointer;
+    text-align: center;
+    min-width: 36px;
+}
+
+.day-selector .day-text.active {
+    background-color: var(--accent);
+    border-radius: 100px;
+    color: var(--accent-complement);
+}
+
+#menu {
+    display: none;
+    background-color: var(--background-primary);
+    z-index: 2;
+}
+
+#menuButton {
+    margin-right: 0.5em;
+}
+
+#menuMobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+
+    opacity: 0;
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+#menuMobileBody {
+    display: block;
+    width: max-content;
+    height: max-content;
+    background-color: var(--background-primary);
+    pointer-events: auto;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.5);
+}
+
+#menuMobileHeader {
+    margin: 1em 2em;
+
+    color: var(--foreground-primary);
+    font-size: 1.5em;
+}
+
+#menuMobileList {
+    height: max-content;
+    max-height: 200px;
+    border-top: 1px solid var(--background-secondary);
+    border-bottom: 1px solid var(--background-secondary);
+    overflow: scroll;
+}
+
+#myScheduleMobile {
+    border-top: 0;
+}
+
+.menuMobileEntry {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    padding: 0 1.5em;
+    color: var(--foreground-primary);
+    border-top: 1px solid var(--background-secondary);
+}
+
+#menuMobileFooter {
+    width: 100%;
+    padding: 0.5em 1em;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.btn.btn-cancel,
+.btn.btn-cancel:hover
+.btn.btn-cancel:active {
+    color: var(--accent);
+}
+
+#shade {
+    background-color: rgba(0, 0, 0, 0);
+
+    transition-property: background-color;
+    transition-duration: 0.25s;
+
+    position: fixed;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+
+    left: 0;
+    top: 0;
+
+    pointer-events: none;
+     
+    z-index: 1;
+}
+
+#shade.active {
+    background-color: rgba(0, 0, 0, 0.75);
+
+    pointer-events: auto;
+}
+
+.navbar .btn-log-out, .navbar .btn-log-out:hover, .navbar .btn-log-out:active, .navbar .btn-log-out:focus {
+    color: var(--accent);
+    background-color: var(--accent-complement);
+}
+
+.period-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.period-row.pr-top {
+    margin: 0px 10px 10px 10px;
+}
+
+.period-row.pr-middle {
+    margin: 0px 10px 0px 10px;
+}
+
+.period-row.pr-bottom {
+    margin: 10px 10px 0px 10px;
+}
+
+.period-row p {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.period-row .form-group, .period-row .bmd-form-group {
+    display: inline-block;
+    padding-top: 0;
+    margin-bottom: 0;
+}
+
+.period-row input.form-control {
+    font-size: 1.1rem;
+}
+
+.period-row .switch label {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+hr.border-color {
+    margin: 0;
+}
+
+.period.current-period {
+    background-color: var(--accent);
+    color: var(--accent-complement);
+    box-shadow: 0px 4px 4px 0px #000000 25%;
+}
+
+.period {
+    padding: 10px 0px;
+    border-bottom: 1px solid var(--background-secondary);
+}
+
+.period:first-of-type {
+    border-top: 1px solid var(--background-secondary);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right .oi {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.navbar-right .oi:last-of-type {
+    margin-right: 0;
+}
+
+#week {
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    height: max-content;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.week-day, .week-day-header {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 48px;
+}
+
+.day-header, .time {
+    font-weight: bold;
+}
+
+.day-header, .time, .class-entry {
+    text-align: center;
+
+    color: var(--foreground-primary);
+
+    width: calc(100% / 6);
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.class-entry {
+    font-size: 0.7rem;
+}
+
+#loginPage {
+    margin: 0;
+    height: 100%;
+}
+
+#loginDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--accent);
+}
+
+#loginHeader {
+    width: 100%;
+
+    font-size: 4em;
+    text-align: center;
+
+    color: var(--accent-complement);
+}
+
+#loginSubheader {
+    width: 100%;
+
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 6rem;
+
+    color: var(--accent-complement);
+}
+
+#settingsPage {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.settingsHeader {
+    font-size: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
+}
+
+.settingsSubheader {
+    font-size: 1.25em;
+    margin-bottom: 0.25em;
+}
+
+#scheduleButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#successMessageContainer {
+    display: none;
+}
+
+#errorMessageContainer {
+    display: none;
+}
+
+#importScheduleButton,
+#importScheduleButton:hover,
+#importScheduleButton:active {
+    width: 100%;
+
+    background-color: var(--background-secondary);
+    color: var(--accent);
+}
+
+#clearScheduleButton,
+#clearScheduleButton:hover,
+#clearScheduleButton:active {
+    margin-top: 1em;
+    width: 100%;
+
+    background-color: var(--accent);
+    color: var(--accent-complement);
+}
+
+.search-icon {
+    margin-right: 0.25em;
+}
+
+#cancelSearch {
+    margin-left: 0.25em;
+    display: none;
+}
+
+#shared-users {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.shared-user-card {
+    margin-top: 1em;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border: 2px solid var(--background-secondary);
+    border-radius: 1em;
+
+    padding: 1em;
+}
+
+.shared-username {
+    margin: 0;
+    font-size: 1em;
+
+    color: var(--foreground-primary);
+}
+
+.shared-email {
+    margin: 0;
+    font-size: 0.85em;
+
+    color: var(--foreground-secondary);
+}
+
+.remove-shared {
+    color: var(--foreground-secondary);
+}
+
+#share-with-users {
+    display: none;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.share-with-user-card {
+    margin-top: 1em;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 1em;
+
+    padding: 1em;
+}
+
+.share-with-username {
+    margin: 0;
+    font-size: 1em;
+
+    color: var(--accent-complement);
+}
+
+.share-with-email {
+    margin: 0;
+    font-size: 0.85em;
+
+    color: var(--accent-complement);
+}
+
+.add-shared{
+    color: var(--accent-complement);
+}
+
+#loginButton,
+#loginButton:hover,
+#loginButton:active {
+    width: 75%;
+
+    background-color: var(--background-primary);
+    color: var(--accent);
+}
+
+#infoHeader {
+    margin: 0.75em auto;
+
+    font-size: 1.5em;
+    text-align: center;
+    color: var(--foreground-primary);
+}
+
+#infoSubDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendarImg {
+    width: 60%;
+}
+
+#info {
+    margin: auto;
+    margin-top: 0.5em;
+    width: 65%;
+
+    text-align: center;
+    color: var(--foreground-primary);
+}
+
+#settingsPage .btn-log-out, #settingsPage .btn-log-out:hover, #settingsPage .btn-log-out:active, #settingsPage .btn-log-out:focus, #settingsPage .btn-log-out:active:focus {
+    background-color: #800000;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.class-entry.current-day, .class-entry.current-period {
+    background-color: var(--accent-secondary);
+}
+
+.class-entry.current-day.current-period {
+    background-color: var(--accent);
+    color: var(--accent-complement);
+}
+
+.import-button, .import-button:hover, .import-button:active, .import-button:focus, .import-button:active:focus {
+    background-color: var(--background-secondary);
+    color: var(--accent);
+}
+
+.import-button {
+    margin-bottom: 40px;
+}
+
+.skip-import-button, .skip-import-button:hover, .skip-import-button:active, .skip-import-button:focus, .skip-import-button:active:focus {
+    background-color: var(--accent);
+    color: var(--accent-complement);
+}
+
+.btn.btn-lg.import-button, .btn.btn-lg.skip-import-button {
+    padding: 1rem .5rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+}
+
+.import-page .instructions {
+    font-size: 2rem;
+    margin: 20px 0px;
+}
+
+.import-page .instructions-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+a, a:hover, a:focus {
+    color: var(--accent);
+}
+
+#fileInput {
+    display: none;
+}
+
+.custom-file-control, .form-control, .is-focused .custom-file-control, .is-focused .form-control {
+    background-image: linear-gradient(0deg, var(--accent) 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);
+}
+
+.switch label .bmd-switch-track {
+    background-image: linear-gradient(90deg,rgba(0,0,0,.26) 0,rgba(0,0,0,.26) 50%,#cfaeae 0,#cfaeae);
+}
+
+.switch label input:checked+.bmd-switch-track:after {
+    background-color: #800000;
+}
+
+.switch label, .switch label:hover, .is-focused .switch label, .is-focused .switch label:hover {
+    color: #000;
+}
+
+.day-page .form-control.period-location-input {
+    text-align: right;
+}
+
+.week-edit {
+    background-color: #800000;
+    position: relative;
+}
+
+.week-edit-container {
+    padding: 10px 20px;
+}
+
+.week-edit .save-period-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.week-edit .switch label, .week-edit .switch label:hover, .week-edit .is-focused .switch label, .week-edit .is-focused .switch label:hover {
+    color: #fff;
+}
+
+.week-edit .form-control {
+    color: #fff;
+}
+
+.week-edit .form-control::placeholder {
+    color: rgba(255,255,255,.8);
+}
+
+.week-edit .is-focused .form-control, .week-edit .form-control {
+    background-image: linear-gradient(0deg, #fff 2px,rgba(0,150,136,0) 0), linear-gradient(0deg,rgba(255,255,255,.8) 1px,transparent 0);
+}
+
+.week-edit [class^=bmd-label] {
+    color: rgba(255,255,255,.8);
+}
+
+/* https://css-tricks.com/snippets/css/css-triangle/ */
+.week-edit .arrow-pointer {
+    position: relative;
+    width: 0; 
+    height: 0; 
+    top: -9px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 10px solid #800000;
+}
+
+.week-edit .arrow-pointer.day-0 {
+    left: calc((100% / 6) + ((100% / 6) / 2) - 20px);
+}
+
+.week-edit .arrow-pointer.day-1 {
+    left: calc(((100% / 6) * 2) + ((100% / 6) / 2) - 20px);
+}
+
+.week-edit .arrow-pointer.day-2 {
+    left: calc(((100% / 6) * 3) + ((100% / 6) / 2) - 20px);
+}
+
+.week-edit .arrow-pointer.day-3 {
+    left: calc(((100% / 6) * 4) + ((100% / 6) / 2) - 20px);
+}
+
+.week-edit .arrow-pointer.day-4 {
+    left: calc(((100% / 6) * 5) + ((100% / 6) / 2) - 20px);
+}
+
+.edit-instructions {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+#week.editing .class-entry {
+    color: gray;
+    cursor: pointer;
+}
+
+#menuButton {
+    cursor: pointer;
+}
+
+.navbar-myschedule {
+    display: flex;
+    align-items: center;
+}
+
+.add-shared {
+    cursor: pointer;
+}
+
+#cancelSearch {
+    cursor: pointer;
+}
+
+.remove-shared {
+    cursor: pointer;
+}
+.menuEntry {
+    cursor: pointer;
+}
+
+.current-period .switch label {
+    color: #fff;
+}
+
+.rhr-bg {
+    background: #800000;
+}
+
+@media (min-width: 768px) {
+    #dayViewPage.page-container {
+        margin-top: 0px;
+    }    
+
+    #page {
+        display: flex;
+    }
+
+    #menuMobile {
+        display: none;
+    }
+
+    #menu {
+        display: block;
+
+        width: 0;
+        height: 100%;
+        transition-property: width;
+        transition-duration: 0.5s;
+        overflow: hidden;
+
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)
+    }
+
+    #menuHeader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        text-overflow: hidden;
+        white-space: nowrap;
+        
+        background-color: var(--accent);
+        color: var(--accent-complement);
+
+        font-size: 2em;
+    }
+
+    #menuTitle {
+        margin-top: 0.5em;
+        margin-bottom: 0;
+    }
+
+    #searchMenu {
+        color: var(--accent-complement);
+    }
+
+    #searchMenu::placeholder {
+        color: var(--accent-complement);
+        opacity: 0.5;
+    }
+
+    .menuEntry {
+        padding-left: 1em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid var(--background-secondary);
+        transition-property: background-color;
+        transition-duration: 0.2s;
+
+        text-overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .menuEntry:hover {
+        background-color: var(--background-secondary);
+    }
+
+    .menuEntryText {
+        margin: 0;
+    }
+
+    .view-selector {
+        flex-direction: column;
+        height: 100%;
+        margin: 0;
+        height: 505px;
+    }
+
+    .day-selector {
+        flex-direction: column;
+        padding: 25px 5px;
+        height: 100%;
+        margin: 0;
+        min-height: 505px;
+        width: 50px;
+        margin-right: 25px;
+    }
+
+    .day-border {
+        border-left: 1px solid var(--background-secondary);
+    }
+
+    .now-page {
+        padding: 0px 15px 0px 0px;
+    }
+
+    .now-page .card {
+        margin-bottom: 30px;
+    }
+
+    .day-page .view-selector, .day-page .day-selector {
+        margin-top: 19px;
+    }
+
+    .navbar-right .btn {
+        margin-left: 10px;
+    }
+
+    .class-entry {
+        font-size: 1rem;
+    }
+
+    #loginHeader {
+        font-size: 5em;
+        width: 75%;
+    }
+
+    #loginSubheader {
+        font-size: 4em;
+        width: 75%;
+    }
+
+    #loginButton,
+    #loginButton:hover,
+    #loginButton:active {
+        width: 50%;
+    }
+
+    #infoHeader {
+        font-size: 3em;
+    }
+
+    #infoSubDiv {
+        flex-direction: row;
+    }
+    
+    #calendarImg {
+        width: 40%;
+    }
+
+    #info {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 1em;
+        margin-right: 0em;
+        width: 40%;
+
+        font-size: 2em;
+        text-align: center;
+        color: var(--foreground-primary);
+    }
+    
+    .import-page .instructions {
+        font-size: 2.25rem;
+        margin: 50px 0px;
+    }
+
+    .shared-user-card {
+        width: 48%;
+    }
+
+    .share-with-user-card {
+        width: 48%;
+    }
+
+    .period:first-of-type {
+        border-top: none;
+    }
+
+    .edit-instructions {
+        font-size: 2rem;
+    }
+    
+    .share-with-user-card {
+        width: 48%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .shared-user-card {
+        width: 32%;
+    }
+
+    .share-with-user-card {
+        width: 32%;
+    }
+}
